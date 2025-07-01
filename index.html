@@ -68,7 +68,6 @@
     <div id="recaptcha-container"></div>
   </div>
 
-  <!-- Firebase Auth + Firestore -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
     import { getAuth, signInWithPhoneNumber, RecaptchaVerifier } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
@@ -88,25 +87,27 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    let codeSent = false;
+    let confirmationResult;
+    let recaptchaVerifier;
 
-    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-      size: 'invisible'
-    }, auth);
-
-    window.sendCode = () => {
-      if (codeSent) return;
-
+    window.sendCode = async () => {
       let phone = document.getElementById('phoneNumber').value;
       if (!phone.startsWith('+')) {
         phone = '+251' + phone;
       }
 
-      signInWithPhoneNumber(auth, phone, window.recaptchaVerifier)
-        .then((confirmationResult) => {
-          window.confirmationResult = confirmationResult;
-          codeSent = true;
-          alert("Verification code sent to your phone.");
+      if (!recaptchaVerifier) {
+        recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+          size: 'invisible'
+        }, auth);
+
+        await recaptchaVerifier.render();
+      }
+
+      signInWithPhoneNumber(auth, phone, recaptchaVerifier)
+        .then((result) => {
+          confirmationResult = result;
+          alert("Verification code sent to " + phone);
           document.getElementById('codeSection').style.display = 'block';
         })
         .catch((error) => {
@@ -116,7 +117,9 @@
 
     window.verifyCode = () => {
       const code = document.getElementById('verificationCode').value;
-      window.confirmationResult.confirm(code)
+      if (!confirmationResult) return alert("You must send the code first.");
+      
+      confirmationResult.confirm(code)
         .then(async (result) => {
           const user = result.user;
 
@@ -126,7 +129,6 @@
             loggedInAt: new Date().toISOString()
           });
 
-          // Redirect after login
           window.location.href = "dashboard.html";
         })
         .catch((error) => {
@@ -136,4 +138,4 @@
   </script>
 
 </body>
-      </html>
+</html>
