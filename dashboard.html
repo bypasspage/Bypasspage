@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Telegram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e6f2fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .welcome-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #0088cc;
+    }
+    button {
+      margin-top: 20px;
+      background: #0088cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-box">
+    <h1>Welcome!</h1>
+    <p id="userNumber">Checking user info...</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDyeLuGBeEmBkzKV3S2GClNuhHZKdYsCi0",
+      authDomain: "robel-c0ef7.firebaseapp.com",
+      projectId: "robel-c0ef7",
+      storageBucket: "robel-c0ef7.appspot.com",
+      messagingSenderId: "318106948985",
+      appId: "1:318106948985:web:3903494023c0ba9979cba8",
+      measurementId: "G-EH5N1YQ4Q5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        document.getElementById('userNumber').innerText = `Logged in as: ${user.phoneNumber}`;
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+
+    window.logout = () => {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
+      });
+    };
+  </script>
+</body>
+</html>
